@@ -23,6 +23,7 @@ from . import views
 urlpatterns = [
 	path('', views.TweetListView.as_view(), name = 'tweet-list'),
 	path('<int:pk>/', views.TweetDetailView.as_view(), name = 'tweet-detail'),
+	path('create/', views.TweetCreateView.as_view(), name = 'tweet-create'),
 
 ]
 

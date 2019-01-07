@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
+from django.views.generic.edit import CreateView
+
+from .forms import TweetModelForm
 
 from .models import Tweet 
 
@@ -24,3 +27,13 @@ class TweetListView(generic.ListView):
 class TweetDetailView(generic.DetailView):
 	model = Tweet
 	template_name = 'tweet/detail_view.html'
+
+
+class TweetCreateView(CreateView):
+	form_class = TweetModelForm
+	template_name = 'tweet/create_view.html'
+	success_url = '/tweet/create/'
+
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(TweetCreateView, self).form_valid(form)
