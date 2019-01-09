@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .forms import TweetModelForm
 from .mixins import FormUserNeededMixins 
@@ -39,3 +39,12 @@ class TweetCreateView(CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		return super(TweetCreateView, self).form_valid(form)
+
+
+
+class TweetUpdateView(UpdateView):
+	model = Tweet
+	form_class = TweetModelForm
+	template_name = 'tweet/update_view.html'
+	success_url = '/tweet/'
+
