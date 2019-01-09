@@ -1,6 +1,6 @@
 from django import forms
 
-from django.forms.utils import Errorlist
+from django.forms.utils import ErrorList
 
 class FormUserNeededMixins(object):
 	def form_valid(self, form):
@@ -8,5 +8,5 @@ class FormUserNeededMixins(object):
 			form.instance.user = self.request.user 
 			return super(FormUserNeededMixins, self).form_valid(form)
 		else:
-			form_errors[forms.forms.NON_FIELD_ERRORS] = Errorlist(["user must be logged in to continue"])
+			form_errors[forms.forms.NON_FIELD_ERRORS] = ErrorList(["user must be logged in to continue"])
 			return self.form_invalid(form)

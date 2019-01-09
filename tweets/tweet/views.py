@@ -3,6 +3,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView
 
 from .forms import TweetModelForm
+from .mixins import FormUserNeededMixins 
 
 from .models import Tweet 
 
@@ -33,6 +34,7 @@ class TweetCreateView(CreateView):
 	form_class = TweetModelForm
 	template_name = 'tweet/create_view.html'
 	success_url = '/tweet/create/'
+	login_url = '/admin/'
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
