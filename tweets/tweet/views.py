@@ -3,7 +3,8 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView
 
 from .forms import TweetModelForm
-from .mixins import FormUserNeededMixins 
+from .mixins import FormUserNeededMixins, UserOwnerMixin 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Tweet 
 
@@ -42,7 +43,7 @@ class TweetCreateView(CreateView):
 
 
 
-class TweetUpdateView(UpdateView):
+class TweetUpdateView(LoginRequiredMixin, UserOwnerMixin, UpdateView):
 	model = Tweet
 	form_class = TweetModelForm
 	template_name = 'tweet/update_view.html'
