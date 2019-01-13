@@ -19,12 +19,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
+from tweet.views import HomePageView 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tweet/', include('tweet.urls')),
+    path('', HomePageView.as_view(), name ='home'),
 
 ]
 
