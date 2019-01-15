@@ -19,7 +19,7 @@ def tweet_detail_view(request, pk):
 def tweet_list_view(request):
 	return render(request, 'tweet/list_view.html', {})
 """
-
+"""
 class HomePageView(TemplateView):
 	template_name = 'home.html'
 
@@ -27,7 +27,7 @@ class HomePageView(TemplateView):
 		context = super().get_context_data(**kwargs)
 		context['latest_tweet'] = Tweet.objects.all()
 		return context
-
+"""
 
 class TweetListView(generic.ListView):
 	model = Tweet
