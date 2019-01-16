@@ -51,7 +51,7 @@ class TweetListView(generic.ListView):
 class TweetDetailView(generic.DetailView):
 	model = Tweet
 	template_name = 'tweet/detail_view.html'
-	succec_url = reverse_lazy("tweet:list")
+	succec_url = reverse_lazy("tweet:tweet-detail")
 
 
 
