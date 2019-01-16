@@ -3,4 +3,12 @@
 	{{ form.as_p }}
 	<input type="submit" value="Send message" name="">
 </form> -->
-{% include 'tweet/form.html' with form=form btn_title="Tweet" %}
+
+
+{% extends 'base.html' %}
+
+{% block title %}Create|{{ block.super }}{% endblock title %}
+
+{% block content %}
+	{% include 'tweet/form.html' with form=form btn_title="Tweet" %}
+{% endblock content %}

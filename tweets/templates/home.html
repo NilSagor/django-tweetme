@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Home</title>
-</head>
-<body>
-	
-</body>
-</html>
+
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super}}|Welcome{% endblock title %}
+
+{% block content %}
+	<div class="media">
+	  <img src="..." class="mr-3" alt="...">
+	  <div class="media-body">
+	    <h5 class="mt-0">Media heading</h5>
+	    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+	  </div>
+	</div>
+{% endblock content %}
