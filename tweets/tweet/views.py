@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
+from django.db.models import Q
 
 from .forms import TweetModelForm
 from .mixins import FormUserNeededMixins, UserOwnerMixin 
@@ -30,11 +31,20 @@ class HomePageView(TemplateView):
 """
 
 class TweetListView(generic.ListView):
-	model = Tweet
+	#model = Tweet
 	template_name = 'tweet/list_view.html'	
-
+	def get_queryset(self, *args, **kwargs):
+		qs = Tweet.objects.all()
+		print(qs)
+		query=self.request.GET.get('q', None)
+		if query is not None:
+			qs = qs.filter(
+				Q(content__icontains=query)|
+				Q(user__username__icontains=query)
+			)
+		return qs 
 	def get_context_data(self, *args, **kwargs):
-		context = super(TweetListView, self).get_context_data(*args, **kwargs)
+		context = super().get_context_data(*args, **kwargs)
 		#context['-another_list'] = Tweet.objects.all()
 		return context
 
@@ -61,9 +71,9 @@ class TweetUpdateView(LoginRequiredMixin, UserOwnerMixin, UpdateView):
 	model = Tweet
 	form_class = TweetModelForm
 	template_name = 'tweet/update_view.html'
-	success_url = '/tweet/'
+	#success_url = '/tweet/'
 
 class TweetDeleteView(LoginRequiredMixin, DeleteView):
 	model = Tweet 
 	template_name = 'tweet/delete_confirm.html'
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('tweet:tweet-list') 
