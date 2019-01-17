@@ -5,7 +5,7 @@
 {% block content %}
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
-			{% include 'tweet/tweet_search_form.html' %} <br>
+			
 			{% for object in object_list %}
 			<div class="media mt-3">			  
 			  <a class="mr-3" href="#">
@@ -18,14 +18,15 @@
 			    via {{ object.user }} | {{ object.timestamp|timesince }} ago |
 			    <a href="{{ object.get_absolute_url}}">View</a> 
 			  </div>
-			  {% empty %}
-			  	{% if request.GET.q %}
-			  		<p>No tweet found</p>
-			  	{% else %}
-			  		<p>No tweet yet</p>
-			  	{% endif %}	
+
 			</div>
 			<hr>
+			{% empty %}
+				{% if request.GET.q %}
+					<p>No tweet found</p>
+				{% else %}
+					<p>No tweet yet</p>
+				{% endif %}	
 			{% endfor %}
 		</div>
 	</div>
