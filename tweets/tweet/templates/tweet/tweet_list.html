@@ -18,6 +18,12 @@
 			    via {{ object.user }} | {{ object.timestamp|timesince }} ago |
 			    <a href="{{ object.get_absolute_url}}">View</a> 
 			  </div>
+			  {% empty %}
+			  	{% if request.GET.q %}
+			  		<p>No tweet found</p>
+			  	{% else %}
+			  		<p>No tweet yet</p>
+			  	{% endif %}	
 			</div>
 			<hr>
 			{% endfor %}
