@@ -32,10 +32,10 @@ class HomePageView(TemplateView):
 
 class TweetListView(generic.ListView):
 	#model = Tweet
-	template_name = 'tweet/list_view.html'	
+	#template_name = 'tweet/list_view.html'	
 	def get_queryset(self, *args, **kwargs):
 		qs = Tweet.objects.all()
-		print(qs)
+		#print(qs)
 		query=self.request.GET.get('q', None)
 		if query is not None:
 			qs = qs.filter(
@@ -50,7 +50,7 @@ class TweetListView(generic.ListView):
 
 class TweetDetailView(generic.DetailView):
 	model = Tweet
-	template_name = 'tweet/detail_view.html'
+	template_name = 'tweet/tweet_detail.html'
 	succec_url = reverse_lazy("tweet:tweet-detail")
 
 
@@ -63,7 +63,7 @@ class TweetCreateView(CreateView):
 
 	def form_valid(self, form):
 		form.instance.user = self.request.user
-		return super(TweetCreateView, self).form_valid(form)
+		return super().form_valid(form)
 
 
 
