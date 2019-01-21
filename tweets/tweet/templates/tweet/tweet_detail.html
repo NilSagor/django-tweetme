@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Detail|{{ block.super }}{% endblock title %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			
+			
+			<div class="media mt-3">			  
+			  <a class="mr-3" href="#">
+			  	<!-- {% if object.image %} -->
+			    <img src="..." class="mr-3 img-thumbnail" alt="...">
+			    <!-- {% endif %} -->
+			    {{ object.user }}
+			  </a>
+			  <div class="media-body">
+			    {{ object.content }} <br>
+			    {{ object.timestamp|timesince }} ago
+			    
+			  </div>
+
+			</div>
+			
+			
+		</div>
+	</div>
+{% endblock content %}
+
+
