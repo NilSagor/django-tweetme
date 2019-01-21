@@ -4,16 +4,24 @@
 
 {% block content %}
 	<div class="row">
+		
 		<div class="col-sm-8 col-sm-offset-2">
-			
+			{% if not request.GET.q %}
+			  	<div class="">
+			  		{% include 'tweet/form.html' with form=create_form action_url=create_url btn_title="Tweet" %}
+			  	</div>
+			  	<hr>
+			  	{% endif %}	
 			{% for object in object_list %}
 			<div class="media mt-3">			  
 			  <a class="mr-3" href="#">
 			  	{% if object.image %}
 			    <img src="..." class="mr-3" alt="...">
 			    {% endif %}
+			    <h1>{{ request.user }}</h1>
 			  </a>
 			  <div class="media-body">
+			  		
 			    {{ object.content }} <br>
 			    via {{ object.user }} | {{ object.timestamp|timesince }} ago |
 			    <a href="{{ object.get_absolute_url}}">View</a> 
