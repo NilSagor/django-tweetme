@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'crispy_forms',
+
     'tweet',
 ]
 
@@ -107,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -124,3 +126,4 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static-storage'),
         ]
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-serve')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
