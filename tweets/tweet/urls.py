@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic.base import RedirectView
 
 from . import views
 
@@ -23,6 +24,8 @@ app_name = 'tweet'
 
 urlpatterns = [
 	path('', views.TweetListView.as_view(), name = 'tweet-list'),
+	path('', RedirectView.as_view(url="/")),
+	path('search/', views.TweetListView.as_view(), name = 'search'),
 	path('<int:pk>/', views.TweetDetailView.as_view(), name = 'tweet-detail'),
 	path('create/', views.TweetCreateView.as_view(), name = 'tweet-create'),
 	path('<int:pk>/update/', views.TweetUpdateView.as_view(), name = 'tweet-update'),
